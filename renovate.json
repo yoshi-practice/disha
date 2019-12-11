@@ -1,0 +1,15 @@
+{
+  "extends": ["config:base"],
+  "labels": ["renovate"],
+  "major": {
+    "groupName": "all major dependencies"
+  },
+  "minor": {
+    "automerge": true,
+    "groupName": "all minor dependencies"
+  },
+  "patch": {
+    "automerge": true,
+    "groupName": "all patch dependencies"
+  }
+}
