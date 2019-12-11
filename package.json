@@ -19,9 +19,9 @@
   },
   "homepage": "https://github.com/yoshi1125hisa/disha#readme",
   "devDependencies": {
-    "@babel/cli": "7.7.4",
-    "@babel/core": "7.7.4",
-    "@babel/preset-env": "7.7.4",
+    "@babel/cli": "7.7.5",
+    "@babel/core": "7.7.5",
+    "@babel/preset-env": "7.7.6",
     "@babel/register": "7.7.4",
     "babel-loader": "8.0.6",
     "browser-sync": "2.26.7",
