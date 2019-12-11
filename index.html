@@ -23,10 +23,77 @@
     rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
   <link rel="stylesheet" href="./dist/css/style.css">
+
+    <script src="/__/firebase/7.5.2/firebase-app.js"></script>
+    <script src="/__/firebase/7.5.2/firebase-auth.js"></script>
+    <script src="/__/firebase/init.js"></script>
 </head>
 
 <body>
-  <ons-button>a</ons-button>
+  <ons-navigator swipeable id="appNavigator" page="title.html">
+    <!--  page="title.html" -->
+    <!-- <ons-splitter id="appSplitter">
+            <ons-splitter-content page="tabbar.html"></ons-splitter-content>
+        </ons-splitter> -->
+  </ons-navigator>
+
+  <template id="title.html">
+    <ons-page id="Title">
+      <img
+        src="https://base-ec2if.akamaized.net/w=640,a=0,q=90,u=1/images/item/origin/45a4c0fe31638bf12dd84ea716825405.jpg">
+      <h1>disha!</h1>
+      <p>余ったご飯、食べられなかったご飯はシェアしよう</p>
+      <ons-button id="register-move-btn" onclick="appNavigator.pushPage('register.html')">登録</ons-button>
+      <ons-button id="login-move-btn" onclick="appNavigator.pushPage('login.html')">ログイン</ons-button>
+      <!-- <small class="agree">説明</small> -->
+    </ons-page>
+  </template>
+
+  <template id="login.html">
+    <ons-page id="Login">
+       <!-- Container for the demo -->
+       <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+         <div class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
+           <h2 class="mdl-card__title-text">Firebase Email &amp; Password Authentication</h2>
+         </div>
+         <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+           <p>Enter an email and password below and either sign in to an existing account or sign up</p>
+
+           <input class="mdl-textfield__input" style="display:inline;width:auto;" type="text" id="email" name="email"
+             placeholder="Email" />
+           &nbsp;&nbsp;&nbsp;
+           <input class="mdl-textfield__input" style="display:inline;width:auto;" type="password" id="password"
+             name="password" placeholder="Password" />
+           <br /><br />
+           <button disabled class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-sign-in"
+             name="signin">Sign In</button>
+           &nbsp;&nbsp;&nbsp;
+           <button class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-sign-up" name="signup">Sign
+             Up</button>
+           &nbsp;&nbsp;&nbsp;
+           <button class="mdl-button mdl-js-button mdl-button--raised" disabled id="quickstart-verify-email"
+             name="verify-email">Send Email Verification</button>
+           &nbsp;&nbsp;&nbsp;
+           <button class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-password-reset"
+             name="verify-email">Send Password Reset Email</button>
+
+           <!-- Container where we'll display the user details -->
+           <div class="quickstart-user-details-container">
+             Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
+             <div>Firebase auth <code>currentUser</code> object value:</div>
+             <pre><code id="quickstart-account-details">null</code></pre>
+           </div>
+         </div>
+       </div>
+
+    </ons-page>
+  </template>
+
+  <template id="register.html">
+    <ons-page id="Register">
+      <p>sign up page</p>
+    </ons-page>
+  </template>
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
   <script src="./dist/js/bundle.js"></script>
 </body>

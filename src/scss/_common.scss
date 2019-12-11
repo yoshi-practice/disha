@@ -1,0 +1,29 @@
+html,
+body {
+  overscroll-behavior: none;
+}
+
+* {
+  font-family: 'Lato',
+    'Noto Sans JP',
+    '游ゴシック Medium',
+    '游ゴシック体',
+    'Yu Gothic Medium',
+    YuGothic,
+    'ヒラギノ角ゴ ProN',
+    'Hiragino Kaku Gothic ProN',
+    'メイリオ',
+    Meiryo,
+    'ＭＳ Ｐゴシック',
+    'MS PGothic',
+    sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+  padding: 0;
+}

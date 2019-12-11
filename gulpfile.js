@@ -5,18 +5,19 @@ var source = require('vinyl-source-stream');
 const browserSync = require('browser-sync').create();
 
 gulp.task('browserify', () => {
-    return browserify('./src/js/main.js')
-      .transform(babelify, {
-        presets: ["@babel/preset-env"]
-      })
-      .bundle()
-      .on('error', function (err) {
-        console.log(err.message);
-        console.log(err.stack);
-      })
-      .pipe(source('bundle.js'))
-      .pipe(gulp.dest('./dist/js/'));
-});
+
+    var browserified = transform(function (filename) {
+      var b = browserify(filename);
+      b.add(filename);
+      return b.bundle();
+    });
+
+    return gulp.src('./src/js/*.js')
+    .pipe(browserified)
+    .pipe(uglify())
+    .pipe(gulp.dest('./dist/js/'));
+  }
+);
 
 gulp.task('scss', () => {
   const sass = require('gulp-sass')
@@ -54,8 +55,8 @@ gulp.task('watch', () => {
   }
   gulp.watch('./dist/**/*', browserReload);
   gulp.watch('./index.html', browserReload);
-  gulp.watch('./src/js/*', gulp.series('browserify'));
-  gulp.watch('./src/scss/*', gulp.series('scss'));
+  gulp.watch('./src/js/**/*', gulp.series('browserify'));
+  gulp.watch('./src/scss/**/*', gulp.series('scss'));
 })
 
 gulp.task('default', gulp.series('serve', 'watch'))
