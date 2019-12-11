@@ -27,7 +27,7 @@ $ npm run build
 
 ### If you use `gh-pages`
 
-You should deploy any branch after remove `assets` from `.gitignore`.
+You should deploy any branch after remove `dist` from `.gitignore`.
 
 ## Git commit
 

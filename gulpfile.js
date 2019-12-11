@@ -1,20 +1,21 @@
 const gulp = require('gulp');
-const babel = require('gulp-babel');
+var browserify = require('browserify');
+var babelify = require('babelify');
+var source = require('vinyl-source-stream');
 const browserSync = require('browser-sync').create();
-const uglify = require('gulp-uglify');
-const rename = require('gulp-rename');
 
-gulp.task('babel', () => {
-  return gulp
-    .src('src/js/*.js')
-    .pipe(babel({
-      presets: ["@babel/preset-env"]
-    }))
-    .pipe(uglify())
-    .pipe(rename({
-      extname: '.min.js'
-    }))
-    .pipe(gulp.dest('assets/js/'));
+gulp.task('browserify', () => {
+    return browserify('./src/js/main.js')
+      .transform(babelify, {
+        presets: ["@babel/preset-env"]
+      })
+      .bundle()
+      .on('error', function (err) {
+        console.log(err.message);
+        console.log(err.stack);
+      })
+      .pipe(source('bundle.js'))
+      .pipe(gulp.dest('./dist/js/'));
 });
 
 gulp.task('scss', () => {
@@ -29,11 +30,11 @@ gulp.task('scss', () => {
     .src('./src/scss/*.scss')
     .pipe(sass())
     .pipe(postcss(processors))
-    .pipe(gulp.dest('assets/css/'))
+    .pipe(gulp.dest('dist/css/'))
 });
 
 gulp.task('build',
-  gulp.parallel('babel', 'scss')
+  gulp.parallel('browserify', 'scss')
 );
 
 gulp.task('serve', done => {
@@ -51,9 +52,9 @@ gulp.task('watch', () => {
     browserSync.reload()
     done()
   }
-  gulp.watch('./assets/**/*', browserReload);
+  gulp.watch('./dist/**/*', browserReload);
   gulp.watch('./index.html', browserReload);
-  gulp.watch('./src/js/*', gulp.series('babel'));
+  gulp.watch('./src/js/*', gulp.series('browserify'));
   gulp.watch('./src/scss/*', gulp.series('scss'));
 })
 
